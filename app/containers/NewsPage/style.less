@@ -1,0 +1,234 @@
+.new_page {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(71, 101, 132);
+  align-items: center;
+
+
+  .top_logo {
+    max-width: 564px;
+    height: auto;
+
+    @media only screen and (max-width: 800px) {
+      & {
+        width: 98vw;
+      }
+    }
+  }
+
+
+  .page_con {
+    background-color: #ffffff;
+    padding-top: 36px;
+    padding-bottom: 0;
+    padding-right: 50px;
+    padding-left: 50px;
+    max-width: 660px;
+    box-sizing: border-box;
+
+    @media only screen and (max-width: 600px) {
+      & {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+
+    .title_tip {
+      align-items: center;
+
+      .page_title {
+        color: #476584;
+        font-family: Recursive, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .page_tip {
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        color: #2a2a2a;
+        font-size: 20px;
+        border-spacing: 2px;
+        padding-bottom: 24px;
+        text-align: center;
+        // text-align: justify;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            font-size: 36px;
+          }
+        }
+      }
+    }
+
+    .atc_item {
+      padding-top: 24px;
+
+      .atc_name {
+        font-family: Recursive, sans-serif;
+        border-bottom: 2px solid #476584;
+        font-size: 16px;
+        font-weight: 700;
+        color: #476584;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            font-size: 20px;
+          }
+        }
+      }
+
+      .atc_tip {
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        color: #476584;
+        font-size: 18px;
+        margin-bottom: 24px;
+        line-height: 20px;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            font-size: 26px;
+            line-height: 30px;
+          }
+        }
+      }
+
+      .atc_date {
+        padding: 12px 0;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            font-size: 18px;
+          }
+        }
+      }
+
+      .atc_detail {
+        color: #000000;
+        font-size: 14px;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        text-align: justify;
+        border-spacing: 2px;
+        line-height: 18px;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .atc_company {
+        color: #000000;
+        font-size: 14px;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-weight: 700;
+        align-self: flex-end;
+        padding-top: 12px;
+        padding-bottom: 24px;
+        // padding-left: 12px !important;
+        text-align: right;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    .con_logo {
+      width: 100%;
+      display: block;
+      margin-top: 48px;
+    }
+
+    .page_info {
+      padding: 12px 0;
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-size: 16px;
+      text-align: justify;
+      color: rgb(0, 0, 0);
+    }
+
+    .page_icons_wrap {
+      justify-content: center;
+      padding: 80px 0 70px 0;
+    }
+
+    .page_icons {
+      width: 40px;
+      height: 40px;
+      display: block;
+      padding: 0 24px;
+
+      @media only screen and (max-width: 600px) {
+        & {
+          padding: 0 6px !important;
+        }
+      }
+    }
+  }
+
+  .page_bottom {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    margin-bottom: 130px;
+    padding-right: 50px;
+    padding-left: 50px;
+    max-width: 660px;
+    box-sizing: border-box;
+    width: 100%;
+    word-break: break-word;
+
+    @media only screen and (max-width: 600px) {
+      & {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+
+    .page_bottom_one {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .page_bottom_two {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: 14px;
+    }
+  }
+
+  .page_footer {
+    padding-top: 24px;
+    padding-bottom: 48px;
+    width: 100vw;
+    background: white;
+    align-items: center;
+    color: #606060;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    padding-bottom: 5px;
+    line-height: 16px;
+    text-align: center;
+
+    @media only screen and (max-width: 600px) {
+      .grey {
+        display: block;
+        padding: 10px;
+      }
+    }
+
+    .grey {
+      color: #404040 !important;
+    }
+  }
+
+}
