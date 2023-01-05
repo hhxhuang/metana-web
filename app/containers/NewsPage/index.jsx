@@ -64,10 +64,11 @@ class NewsPage extends React.Component {
           detail.cluster_name &&
           Object.keys(detail.cluster_name).map((key, value) => (
             <div key={key} className="flex-column atc_item">
-              <div className="atc_name">{detail.cluster_name[key]}</div>
-              <div className="atc_tip">{detail.Title[key]}</div>
+              <div className="atc_name">VOICE{parseInt(key) + 1}</div>
+              <div className="atc_tip"> {detail.cluster_name[key]}</div>
               <div className="atc_date">
-                New York Times,{moment(detail.Date[key]).format("MMMM D YYYY")}
+                {detail.Publisher[key]},&nbsp;
+                {moment(detail.Date[key]).format("MMMM D YYYY")}
               </div>
               {detail.sentenceIndexObj[key] &&
                 detail.sentenceIndexObj[key].map((key2, value2) => (
@@ -76,8 +77,8 @@ class NewsPage extends React.Component {
                   </div>
                 ))}
               <div className="atc_company">
-                - {detail.Language[key].slice(-2).split("").join(".")}.
-                {detail.Publisher[key]}
+                - {detail.Language[key].slice(-2).split("").join(".")}.&nbsp;
+                {detail.Title[key]}
               </div>
               {/* <div className="atc_date">Business Times, December 13 2022</div>
               <div className="atc_detail">
