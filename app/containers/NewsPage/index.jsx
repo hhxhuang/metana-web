@@ -76,7 +76,7 @@ class NewsPage extends React.Component {
           detail.cluster_name &&
           Object.keys(detail.cluster_name).map((key, value) => (
             <div key={key} className="flex-column atc_item">
-              <div className="atc_name">VOICE{parseInt(key) + 1}</div>
+              <div className="atc_name">THREAD&nbsp;{parseInt(key) + 1}</div>
               <div className="atc_tip"> {detail.cluster_name[key]}</div>
               <div className="atc_date">
                 {detail.Publisher[key]},&nbsp;
@@ -89,8 +89,11 @@ class NewsPage extends React.Component {
                   </div>
                 ))}
               <div className="atc_company">
-                - {detail.Language[key].slice(-2).split("").join(".")}.&nbsp;
-                {detail.Title[key]}
+                <span>-&nbsp;</span>
+                <a href={detail.Url[key]} target="_blank" className="text_line">
+                  "{detail.Title[key]}"
+                </a>
+                {/* - {detail.Language[key].slice(-2).split("").join(".")}.&nbsp; */}
               </div>
               {/* <div className="atc_date">Business Times, December 13 2022</div>
               <div className="atc_detail">
@@ -119,8 +122,12 @@ class NewsPage extends React.Component {
         </div>
         <div className="page_con">
           <div className="flex-column title_tip">
-            <div className="page_title">Here are the voices on</div>
-            <div className="page_tip">“Russian Ukraine war, NATO alliance”</div>
+            <div className="page_title">
+              This newsletter is tailored based on your request
+            </div>
+            <div className="page_tip">
+              {this.state.detail && this.state.detail.prompt}
+            </div>
           </div>
           {this.renderList()}
           {/* <div className="flex-column atc_item">

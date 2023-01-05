@@ -43,6 +43,7 @@
         font-family: Recursive, sans-serif;
         font-size: 16px;
         font-weight: 700;
+        text-align: center;
       }
 
       .page_tip {
@@ -100,6 +101,7 @@
         font-size: 14px;
         font-weight: 700;
         font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        text-align: right;
 
         @media only screen and (max-width: 600px) {
           & {
@@ -130,11 +132,18 @@
         font-size: 14px;
         font-family: "Playfair Display", Georgia, "Times New Roman", serif;
         font-weight: 700;
-        align-self: flex-end;
+        justify-content: flex-end;
         padding-top: 12px;
         padding-bottom: 24px;
-        // padding-left: 12px !important;
         text-align: right;
+
+        a {
+          color: #000000;
+        }
+
+        .text_line {
+          text-decoration: underline;
+        }
 
         @media only screen and (max-width: 600px) {
           & {
