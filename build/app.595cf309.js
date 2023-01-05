@@ -23277,17 +23277,20 @@ var NewsPage = function (_React$Component) {
             _react2.default.createElement(
               "div",
               { className: "atc_name" },
-              detail.cluster_name[key]
+              "VOICE",
+              parseInt(key) + 1
             ),
             _react2.default.createElement(
               "div",
               { className: "atc_tip" },
-              detail.Title[key]
+              " ",
+              detail.cluster_name[key]
             ),
             _react2.default.createElement(
               "div",
               { className: "atc_date" },
-              "New York Times,",
+              detail.Publisher[key],
+              ",\xA0",
               (0, _moment2.default)(detail.Date[key]).format("MMMM D YYYY")
             ),
             detail.sentenceIndexObj[key] && detail.sentenceIndexObj[key].map(function (key2, value2) {
@@ -23302,8 +23305,8 @@ var NewsPage = function (_React$Component) {
               { className: "atc_company" },
               "- ",
               detail.Language[key].slice(-2).split("").join("."),
-              ".",
-              detail.Publisher[key]
+              ".\xA0",
+              detail.Title[key]
             )
           );
         })
