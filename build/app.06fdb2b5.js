@@ -22992,7 +22992,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var customHistory = (0, _history.createHashHistory)();
+// import {createHashHistory} from 'history'
+// const customHistory = createHashHistory();
+
+
+var customHistory = (0, _history.createBrowserHistory)();
 
 var AppRouter = function (_Component) {
   _inherits(AppRouter, _Component);
@@ -23223,14 +23227,24 @@ var NewsPage = function (_React$Component) {
   _createClass(NewsPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getDetail();
+      this.setState({
+        id: this.getUrlParam("id")
+      }, this.getDetail);
+    }
+  }, {
+    key: "getUrlParam",
+    value: function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
     }
   }, {
     key: "getDetail",
     value: function getDetail() {
       var _this2 = this;
 
-      var id = 1609383887372947458;
+      var id = this.state.id;
       _request2.default.get("/info?id=" + id).then(function (res) {
         if (res && res.data && !(0, _obj.isObjectEmpty)(res.data)) {
           console.log("res", res.data);
@@ -23277,7 +23291,7 @@ var NewsPage = function (_React$Component) {
             _react2.default.createElement(
               "div",
               { className: "atc_name" },
-              "VOICE",
+              "THREAD\xA0",
               parseInt(key) + 1
             ),
             _react2.default.createElement(
@@ -23303,10 +23317,18 @@ var NewsPage = function (_React$Component) {
             _react2.default.createElement(
               "div",
               { className: "atc_company" },
-              "- ",
-              detail.Language[key].slice(-2).split("").join("."),
-              ".\xA0",
-              detail.Title[key]
+              _react2.default.createElement(
+                "span",
+                null,
+                "-\xA0"
+              ),
+              _react2.default.createElement(
+                "a",
+                { href: detail.Url[key], target: "_blank", className: "text_line" },
+                "\"",
+                detail.Title[key],
+                "\""
+              )
             )
           );
         })
@@ -23335,12 +23357,12 @@ var NewsPage = function (_React$Component) {
             _react2.default.createElement(
               "div",
               { className: "page_title" },
-              "Here are the voices on"
+              "This newsletter is tailored based on your request"
             ),
             _react2.default.createElement(
               "div",
               { className: "page_tip" },
-              "\u201CRussian Ukraine war, NATO alliance\u201D"
+              this.state.detail && this.state.detail.prompt
             )
           ),
           this.renderList(),
