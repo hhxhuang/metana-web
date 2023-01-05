@@ -16,11 +16,23 @@ class NewsPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getDetail();
+    this.setState(
+      {
+        id: this.getUrlParam("id"),
+      },
+      this.getDetail
+    );
+  }
+
+  getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+    if (r != null) return unescape(r[2]);
+    return null; //返回参数值
   }
 
   getDetail() {
-    let id = 1609383887372947458;
+    let id = this.state.id;
     axiosInstance.get(`/info?id=${id}`).then(
       (res) => {
         if (res && res.data && !isObjectEmpty(res.data)) {

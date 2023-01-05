@@ -4,8 +4,10 @@ import {Router, Route} from 'react-router-dom'
 import App from '../containers'
 import SubRouter from './SubRouter'
 
-import {createHashHistory} from 'history'
-const customHistory = createHashHistory();
+// import {createHashHistory} from 'history'
+// const customHistory = createHashHistory();
+import {createBrowserHistory} from 'history'
+const customHistory = createBrowserHistory();
 
 export default class AppRouter extends Component {
   constructor(props) {
