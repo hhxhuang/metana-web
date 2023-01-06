@@ -38,9 +38,9 @@ class NewsPage extends React.Component {
         if (res && res.data && !isObjectEmpty(res.data)) {
           console.log("res", res.data);
           this.handelList(res.data);
-          // this.setState({
-          //   detail: this.handelList(res.data),
-          // });
+          this.setState({
+            detail: res.data,
+          });
         }
       },
       (err) => {
@@ -86,7 +86,7 @@ class NewsPage extends React.Component {
     this.setState({
       newData: newData,
     });
-    console.log(newData, JSON.stringify(newData), "newData");
+    console.log(newData);
   }
 
   renderList() {
@@ -141,44 +141,6 @@ class NewsPage extends React.Component {
             </div>
           </div>
           {this.renderList()}
-          {/* <div className="flex-column atc_item">
-            <div className="atc_name">VOICE 1</div>
-            <div className="atc_tip">
-              Russian missile strikes escalate in Ukraine
-            </div>
-            <div className="atc_date">New York Times, December 13 2022</div>
-            <div className="atc_detail">
-              Ukrainians are on edge after President Zelenskyy warned citizens
-              of more Russian missile strikes to come. Many of Vladimir Putin's
-              missiles have been aimed at Ukraine's power grid.
-            </div>
-            <div className="atc_company">
-              - Russia's collapse in northeast Ukraine ignites fury from Putin
-              loyalists
-            </div>
-            <div className="atc_date">Business Times, December 13 2022</div>
-            <div className="atc_detail">
-              Ukrainians are on edge after President Zelenskyy warned citizens
-              of more Russian missile strikes to come. Many of Vladimir Putin's
-              missiles have been aimed at Ukraine's power grid.
-            </div>
-            <div className="atc_company">
-              - U.S. warns of 'horrific' consequences if Russia uses nuclear
-              weapons in Ukraine
-            </div>
-          </div> */}
-          {/* <div className="flex-column atc_item">
-            <div className="atc_name">VOICE 2</div>
-            <div className="atc_tip">SUMMARY_MAINPOINT</div>
-            <div className="atc_date">MEDIA, DATE</div>
-            <div className="atc_detail">
-              SUMMARY_QUOTE. (Translated from LANGUAGE)
-            </div>
-            <div className="atc_company">- TITLE with URL</div>
-            <div className="atc_date">MEDIA, DATE</div>
-            <div className="atc_detail">SUMMARY_QUOTE</div>
-            <div className="atc_company">- TITLE with URL</div>
-          </div> */}
           <div>
             <img
               className="con_logo"
