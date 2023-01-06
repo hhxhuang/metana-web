@@ -23249,9 +23249,9 @@ var NewsPage = function (_React$Component) {
         if (res && res.data && !(0, _obj.isObjectEmpty)(res.data)) {
           console.log("res", res.data);
           _this2.handelList(res.data);
-          // this.setState({
-          //   detail: this.handelList(res.data),
-          // });
+          _this2.setState({
+            detail: res.data
+          });
         }
       }, function (err) {
         console.log(err, err);
@@ -23296,7 +23296,7 @@ var NewsPage = function (_React$Component) {
       this.setState({
         newData: newData
       });
-      console.log(newData, JSON.stringify(newData), "newData");
+      console.log(newData);
     }
   }, {
     key: "renderList",
@@ -23329,7 +23329,7 @@ var NewsPage = function (_React$Component) {
                   { className: "atc_date" },
                   item2.publisher,
                   ",\xA0",
-                  (0, _moment2.default)(item2.date).format("MMMM D YYYY")
+                  item2.date
                 ),
                 _react2.default.createElement(
                   "div",
@@ -23401,24 +23401,47 @@ var NewsPage = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "page_info" },
-            "This is an instantly generated, customizable newsletter with coverage of 9 languages, 11 countries, and 80 media outlets. With cutting-edge NLP and AI technologies, METANA gives readers access to a panoramic view across platforms and languages.",
-            " "
+            "Powered by SOTA NLP and AI technologies, METANA aspires to provide you with a panoramic narrative across media platforms, countries, and languages. This instantly generated newsletter is curated by Elon - An AI news curator under testing. If you have any feedback or comments on this demo, please get in touch with us by clicking on the icons below."
           ),
           _react2.default.createElement(
             "div",
             { className: "flex-row page_icons_wrap" },
-            _react2.default.createElement("img", {
-              className: "page_icons",
-              src: "https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Flinkedin-filled-dark-40.png?w=40&dpr=2"
-            }),
-            _react2.default.createElement("img", {
-              className: "page_icons",
-              src: "https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Fwebsite-filled-dark-40.png?w=40&dpr=2"
-            }),
-            _react2.default.createElement("img", {
-              className: "page_icons",
-              src: "https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Femail-filled-dark-40.png?w=40&dpr=2"
-            })
+            _react2.default.createElement(
+              "a",
+              {
+                className: "page_icons_inner",
+                href: "https://www.linkedin.com/company/metana-news/",
+                target: "_blank"
+              },
+              _react2.default.createElement("img", {
+                className: "page_icons",
+                src: "https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Flinkedin-filled-dark-40.png?w=40&dpr=2"
+              })
+            ),
+            _react2.default.createElement(
+              "a",
+              {
+                className: "page_icons_inner",
+                href: "https://www.metana.news/",
+                target: "_blank"
+              },
+              _react2.default.createElement("img", {
+                className: "page_icons",
+                src: "https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Fwebsite-filled-dark-40.png?w=40&dpr=2"
+              })
+            ),
+            _react2.default.createElement(
+              "a",
+              {
+                className: "page_icons_inner",
+                href: "mailto:hi@metana.news",
+                target: "_blank"
+              },
+              _react2.default.createElement("img", {
+                className: "page_icons",
+                src: "https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Femail-filled-dark-40.png?w=40&dpr=2"
+              })
+            )
           )
         ),
         _react2.default.createElement(
@@ -23427,59 +23450,8 @@ var NewsPage = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "page_bottom_one" },
-            "Copyright (C) *|CURRENT_YEAR|* *|LIST:COMPANY|*. All rights reserved."
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "page_bottom_two" },
-            "*|IFNOT:ARCHIVE_PAGE|**|LIST:DESCRIPTION|**|END:IF|*"
+            "Copyright (C) 2023 Metana. All rights reserved."
           )
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "flex-column page_footer" },
-          _react2.default.createElement(
-            "div",
-            null,
-            "This email was sent to",
-            " ",
-            _react2.default.createElement(
-              "a",
-              { className: "grey", href: "mailto:*|EMAIL|*", target: "_blank" },
-              "*|EMAIL|*"
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            null,
-            _react2.default.createElement(
-              "a",
-              { className: "grey", href: "*|ABOUT_LIST|*", target: "_blank" },
-              _react2.default.createElement(
-                "em",
-                null,
-                "why did I get this?"
-              )
-            ),
-            "\xA0\xA0\xA0\xA0",
-            _react2.default.createElement(
-              "a",
-              { className: "grey", href: "*|UNSUB|*" },
-              "unsubscribe from this list"
-            ),
-            "\xA0\xA0\xA0\xA0",
-            _react2.default.createElement(
-              "a",
-              { className: "grey", href: "*|UPDATE_PROFILE|*" },
-              "update subscription preferences"
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            null,
-            " *|LIST:ADDRESSLINE|*"
-          ),
-          _react2.default.createElement("br", null)
         )
       );
     }
