@@ -23248,9 +23248,10 @@ var NewsPage = function (_React$Component) {
       _request2.default.get("/info?id=" + id).then(function (res) {
         if (res && res.data && !(0, _obj.isObjectEmpty)(res.data)) {
           console.log("res", res.data);
-          _this2.setState({
-            detail: _this2.handelList(res.data)
-          });
+          _this2.handelList(res.data);
+          // this.setState({
+          //   detail: this.handelList(res.data),
+          // });
         }
       }, function (err) {
         console.log(err, err);
@@ -23272,64 +23273,87 @@ var NewsPage = function (_React$Component) {
           console.log(key, cluster_id[key]);
         }
       }
-      detail.sentenceIndexObj = sentenceIndexObj;
-      console.log(sentenceIndexObj, "sentenceIndexObj");
-      return detail;
+      var newData = [];
+      for (var _key in sentenceIndexObj) {
+        var list = sentenceIndexObj[_key];
+        console.log(list, "list");
+        var info = [];
+        for (var index = 0; index < list.length; index++) {
+          var sentencesIndex = list[index];
+          info.push({
+            publisher: detail.Publisher[sentencesIndex],
+            date: detail.Date[sentencesIndex],
+            sentence: detail.sentence[sentencesIndex],
+            title: detail.Title[sentencesIndex],
+            url: detail.Url[sentencesIndex]
+          });
+        }
+        newData.push({
+          clusterName: detail["cluster_name"][list[0]],
+          list: info
+        });
+      }
+      this.setState({
+        newData: newData
+      });
+      console.log(newData, JSON.stringify(newData), "newData");
     }
   }, {
     key: "renderList",
     value: function renderList() {
-      var detail = this.state.detail;
-      console.log(detail && detail.cluster_name && detail.cluster_name);
+      var newData = this.state.newData;
       return _react2.default.createElement(
         "div",
         null,
-        detail && detail.cluster_name && Object.keys(detail.cluster_name).map(function (key, value) {
+        newData && newData.length > 0 && newData.map(function (item, index) {
           return _react2.default.createElement(
             "div",
-            { key: key, className: "flex-column atc_item" },
+            { key: index, className: "flex-column atc_item" },
             _react2.default.createElement(
               "div",
               { className: "atc_name" },
               "THREAD\xA0",
-              parseInt(key) + 1
+              parseInt(index) + 1
             ),
             _react2.default.createElement(
               "div",
               { className: "atc_tip" },
-              " ",
-              detail.cluster_name[key]
+              item.clusterName
             ),
-            _react2.default.createElement(
-              "div",
-              { className: "atc_date" },
-              detail.Publisher[key],
-              ",\xA0",
-              (0, _moment2.default)(detail.Date[key]).format("MMMM D YYYY")
-            ),
-            detail.sentenceIndexObj[key] && detail.sentenceIndexObj[key].map(function (key2, value2) {
+            item.list && item.list.length > 0 && item.list.map(function (item2, index2) {
               return _react2.default.createElement(
                 "div",
-                { key: key2, className: "atc_detail" },
-                detail.sentence[key2]
+                { key: index2 },
+                _react2.default.createElement(
+                  "div",
+                  { className: "atc_date" },
+                  item2.publisher,
+                  ",\xA0",
+                  (0, _moment2.default)(item2.date).format("MMMM D YYYY")
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "atc_detail" },
+                  item2.sentence
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "atc_company" },
+                  _react2.default.createElement(
+                    "span",
+                    null,
+                    "-\xA0"
+                  ),
+                  _react2.default.createElement(
+                    "a",
+                    { href: item2.url, target: "_blank", className: "text_line" },
+                    "\"",
+                    item2.title,
+                    "\""
+                  )
+                )
               );
-            }),
-            _react2.default.createElement(
-              "div",
-              { className: "atc_company" },
-              _react2.default.createElement(
-                "span",
-                null,
-                "-\xA0"
-              ),
-              _react2.default.createElement(
-                "a",
-                { href: detail.Url[key], target: "_blank", className: "text_line" },
-                "\"",
-                detail.Title[key],
-                "\""
-              )
-            )
+            })
           );
         })
       );
