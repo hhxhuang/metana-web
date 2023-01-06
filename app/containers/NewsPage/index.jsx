@@ -37,9 +37,10 @@ class NewsPage extends React.Component {
       (res) => {
         if (res && res.data && !isObjectEmpty(res.data)) {
           console.log("res", res.data);
-          this.setState({
-            detail: this.handelList(res.data),
-          });
+          this.handelList(res.data);
+          // this.setState({
+          //   detail: this.handelList(res.data),
+          // });
         }
       },
       (err) => {
@@ -62,54 +63,59 @@ class NewsPage extends React.Component {
         console.log(key, cluster_id[key]);
       }
     }
-    detail.sentenceIndexObj = sentenceIndexObj;
-    console.log(sentenceIndexObj, "sentenceIndexObj");
-    return detail;
+    let newData = [];
+    for (let key in sentenceIndexObj) {
+      let list = sentenceIndexObj[key];
+      console.log(list, "list");
+      let info = [];
+      for (let index = 0; index < list.length; index++) {
+        const sentencesIndex = list[index];
+        info.push({
+          publisher: detail.Publisher[sentencesIndex],
+          date: detail.Date[sentencesIndex],
+          sentence: detail.sentence[sentencesIndex],
+          title: detail.Title[sentencesIndex],
+          url: detail.Url[sentencesIndex],
+        });
+      }
+      newData.push({
+        clusterName: detail["cluster_name"][list[0]],
+        list: info,
+      });
+    }
+    this.setState({
+      newData: newData,
+    });
+    console.log(newData, JSON.stringify(newData), "newData");
   }
 
   renderList() {
-    let detail = this.state.detail;
-    console.log(detail && detail.cluster_name && detail.cluster_name);
+    let newData = this.state.newData;
     return (
       <div>
-        {detail &&
-          detail.cluster_name &&
-          Object.keys(detail.cluster_name).map((key1, value) => (
-            <div key={key1} className="flex-column atc_item">
-              <div className="atc_name">THREAD&nbsp;{parseInt(key1) + 1}</div>
-              <div className="atc_tip"> {detail.cluster_name[key1]}</div>
-              {detail.sentenceIndexObj[key1] &&
-                detail.sentenceIndexObj[key1].map((key2, value2) => (
-                  <div key={key2}>
+        {newData &&
+          newData.length > 0 &&
+          newData.map((item, index) => (
+            <div key={index} className="flex-column atc_item">
+              <div className="atc_name">THREAD&nbsp;{parseInt(index) + 1}</div>
+              <div className="atc_tip">{item.clusterName}</div>
+              {item.list &&
+                item.list.length > 0 &&
+                item.list.map((item2, index2) => (
+                  <div key={index2}>
                     <div className="atc_date">
-                      {detail.Publisher[key2]},&nbsp;
-                      {moment(detail.Date[key2]).format("MMMM D YYYY")}
+                      {item2.publisher},&nbsp;
+                      {moment(item2.date).format("MMMM D YYYY")}
                     </div>
-                    <div key={key2} className="atc_detail">
-                      {detail.sentence[key2]}
-                    </div>
+                    <div className="atc_detail">{item2.sentence}</div>
                     <div className="atc_company">
                       <span>-&nbsp;</span>
-                      <a
-                        href={detail.Url[key2]}
-                        target="_blank"
-                        className="text_line"
-                      >
-                        "{detail.Title[key2]}"
+                      <a href={item2.url} target="_blank" className="text_line">
+                        "{item2.title}"
                       </a>
                     </div>
                   </div>
                 ))}
-              {/* <div className="atc_date">Business Times, December 13 2022</div>
-              <div className="atc_detail">
-                Ukrainians are on edge after President Zelenskyy warned citizens
-                of more Russian missile strikes to come. Many of Vladimir
-                Putin's missiles have been aimed at Ukraine's power grid.
-              </div>
-              <div className="atc_company">
-                - U.S. warns of 'horrific' consequences if Russia uses nuclear
-                weapons in Ukraine
-              </div> */}
             </div>
           ))}
       </div>
