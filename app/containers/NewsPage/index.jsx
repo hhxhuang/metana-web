@@ -74,27 +74,32 @@ class NewsPage extends React.Component {
       <div>
         {detail &&
           detail.cluster_name &&
-          Object.keys(detail.cluster_name).map((key, value) => (
-            <div key={key} className="flex-column atc_item">
-              <div className="atc_name">THREAD&nbsp;{parseInt(key) + 1}</div>
-              <div className="atc_tip"> {detail.cluster_name[key]}</div>
-              <div className="atc_date">
-                {detail.Publisher[key]},&nbsp;
-                {moment(detail.Date[key]).format("MMMM D YYYY")}
-              </div>
-              {detail.sentenceIndexObj[key] &&
-                detail.sentenceIndexObj[key].map((key2, value2) => (
-                  <div key={key2} className="atc_detail">
-                    {detail.sentence[key2]}
+          Object.keys(detail.cluster_name).map((key1, value) => (
+            <div key={key1} className="flex-column atc_item">
+              <div className="atc_name">THREAD&nbsp;{parseInt(key1) + 1}</div>
+              <div className="atc_tip"> {detail.cluster_name[key1]}</div>
+              {detail.sentenceIndexObj[key1] &&
+                detail.sentenceIndexObj[key1].map((key2, value2) => (
+                  <div key={key2}>
+                    <div className="atc_date">
+                      {detail.Publisher[key2]},&nbsp;
+                      {moment(detail.Date[key2]).format("MMMM D YYYY")}
+                    </div>
+                    <div key={key2} className="atc_detail">
+                      {detail.sentence[key2]}
+                    </div>
+                    <div className="atc_company">
+                      <span>-&nbsp;</span>
+                      <a
+                        href={detail.Url[key2]}
+                        target="_blank"
+                        className="text_line"
+                      >
+                        "{detail.Title[key2]}"
+                      </a>
+                    </div>
                   </div>
                 ))}
-              <div className="atc_company">
-                <span>-&nbsp;</span>
-                <a href={detail.Url[key]} target="_blank" className="text_line">
-                  "{detail.Title[key]}"
-                </a>
-                {/* - {detail.Language[key].slice(-2).split("").join(".")}.&nbsp; */}
-              </div>
               {/* <div className="atc_date">Business Times, December 13 2022</div>
               <div className="atc_detail">
                 Ukrainians are on edge after President Zelenskyy warned citizens
