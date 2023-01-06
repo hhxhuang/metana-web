@@ -101,7 +101,7 @@
         font-size: 14px;
         font-weight: 700;
         font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-        text-align: right;
+        // text-align: right;
 
         @media only screen and (max-width: 600px) {
           & {
@@ -167,23 +167,34 @@
       color: rgb(0, 0, 0);
     }
 
+    .small_text {
+      font-size: 14px;
+    }
+
     .page_icons_wrap {
       justify-content: center;
       padding: 80px 0 70px 0;
     }
 
-    .page_icons {
+    .page_icons_inner {
       width: 40px;
       height: 40px;
       display: block;
       padding: 0 24px;
 
-      @media only screen and (max-width: 600px) {
-        & {
-          padding: 0 6px !important;
+      .page_icons {
+        width: 40px;
+        height: 40px;
+
+        @media only screen and (max-width: 600px) {
+          & {
+            padding: 0 6px !important;
+          }
         }
       }
     }
+
+
   }
 
   .page_bottom {
@@ -211,6 +222,7 @@
       font-family: "Playfair Display", Georgia, "Times New Roman", serif;
       font-size: 14px;
       font-style: italic;
+      padding: 10px 0;
     }
 
     .page_bottom_two {

@@ -105,7 +105,8 @@ class NewsPage extends React.Component {
                   <div key={index2}>
                     <div className="atc_date">
                       {item2.publisher},&nbsp;
-                      {moment(item2.date).format("MMMM D YYYY")}
+                      {item2.date}
+                      {/* {moment(item2.date).format("MMMM D YYYY")} */}
                     </div>
                     <div className="atc_detail">{item2.sentence}</div>
                     <div className="atc_company">
@@ -148,27 +149,52 @@ class NewsPage extends React.Component {
             />
           </div>
           <div className="page_info">
-            This is an instantly generated, customizable newsletter with
-            coverage of 9 languages, 11 countries, and 80 media outlets. With
-            cutting-edge NLP and AI technologies, METANA gives readers access to
-            a panoramic view across platforms and languages.{" "}
+            Powered by SOTA NLP and AI technologies, METANA aspires to provide
+            you with a panoramic narrative across media platforms, countries,
+            and languages. This instantly generated newsletter is curated by
+            Elon - An AI news curator under testing. If you have any feedback or
+            comments on this demo, please get in touch with us by clicking on
+            the icons below.
           </div>
           <div className="flex-row page_icons_wrap">
-            <img
-              className="page_icons"
-              src="https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Flinkedin-filled-dark-40.png?w=40&dpr=2"
-            />
-            <img
-              className="page_icons"
-              src="https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Fwebsite-filled-dark-40.png?w=40&dpr=2"
-            />
-            <img
-              className="page_icons"
-              src="https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Femail-filled-dark-40.png?w=40&dpr=2"
-            />
+            <a
+              className="page_icons_inner"
+              href="https://www.linkedin.com/company/metana-news/"
+              target="_blank"
+            >
+              <img
+                className="page_icons"
+                src="https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Flinkedin-filled-dark-40.png?w=40&dpr=2"
+              />
+            </a>
+            <a
+              className="page_icons_inner"
+              href="https://www.metana.news/"
+              target="_blank"
+            >
+              <img
+                className="page_icons"
+                src="https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Fwebsite-filled-dark-40.png?w=40&dpr=2"
+              />
+            </a>
+            <a
+              className="page_icons_inner"
+              href="mailto:hi@metana.news"
+              target="_blank"
+            >
+              <img
+                className="page_icons"
+                src="https://dim.mcusercontent.com/https/cdn-images.mailchimp.com%2Ficons%2Fsocial-block-v3%2Fblock-icons-v3%2Femail-filled-dark-40.png?w=40&dpr=2"
+              />
+            </a>
           </div>
         </div>
         <div className="page_bottom">
+          <div className="page_bottom_one">
+            Copyright (C) 2023 Metana. All rights reserved.
+          </div>
+        </div>
+        {/* <div className="page_bottom">
           <div className="page_bottom_one">
             Copyright (C) *|CURRENT_YEAR|* *|LIST:COMPANY|*. All rights
             reserved.
@@ -176,8 +202,8 @@ class NewsPage extends React.Component {
           <div className="page_bottom_two">
             *|IFNOT:ARCHIVE_PAGE|**|LIST:DESCRIPTION|**|END:IF|*
           </div>
-        </div>
-        <div className="flex-column page_footer">
+        </div> */}
+        {/* <div className="flex-column page_footer">
           <div>
             This email was sent to{" "}
             <a className="grey" href="mailto:*|EMAIL|*" target="_blank">
@@ -199,7 +225,7 @@ class NewsPage extends React.Component {
           </div>
           <div> *|LIST:ADDRESSLINE|*</div>
           <br />
-        </div>
+        </div> */}
       </div>
     );
   }
