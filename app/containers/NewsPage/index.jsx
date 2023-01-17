@@ -19,6 +19,7 @@ class NewsPage extends React.Component {
     this.setState(
       {
         id: this.getUrlParam("id"),
+        q: this.getUrlParam("q"),
       },
       this.getDetail
     );
@@ -33,7 +34,8 @@ class NewsPage extends React.Component {
 
   getDetail() {
     let id = this.state.id;
-    axiosInstance.get(`/info?id=${id}`).then(
+    let q = this.state.q;
+    axiosInstance.get(`/info?id=${id}&q=${q}`).then(
       (res) => {
         if (res && res.data && !isObjectEmpty(res.data)) {
           console.log("res", res.data);
