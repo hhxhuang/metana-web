@@ -9,10 +9,13 @@ import { Link } from "react-router-dom";
 import data from "../../../mock/data";
 import { isObjectEmpty } from "../../util/obj";
 import moment from "moment";
+import ReactLoading from "react-loading";
 class NewsPage extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = {
+      showLoading: false,
+    };
   }
 
   componentDidMount() {
@@ -47,6 +50,9 @@ class NewsPage extends React.Component {
         url = `${url}?q=${q}`;
       }
     }
+    this.setState({
+      showLoading: true,
+    });
     axiosInstance.get(url).then(
       (res) => {
         if (res && res.data && !isObjectEmpty(res.data)) {
@@ -54,11 +60,15 @@ class NewsPage extends React.Component {
           this.handelList(res.data);
           this.setState({
             detail: res.data,
+            showLoading: false,
           });
         }
       },
       (err) => {
         console.log(err, err);
+        this.setState({
+          showLoading: false,
+        });
       }
     );
   }
@@ -155,6 +165,16 @@ class NewsPage extends React.Component {
               {this.state.detail && this.state.detail.prompt}
             </div>
           </div>
+          {this.state.showLoading && (
+            <div className="flex-row loading_wrap">
+              <ReactLoading
+                color="#476584"
+                type="spinningBubbles"
+                height={50}
+                width={50}
+              />
+            </div>
+          )}
           {this.renderList()}
           <div>
             <img
