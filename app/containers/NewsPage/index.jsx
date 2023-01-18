@@ -35,7 +35,19 @@ class NewsPage extends React.Component {
   getDetail() {
     let id = this.state.id;
     let q = this.state.q;
-    axiosInstance.get(`/info?id=${id}&q=${q}`).then(
+    let url = `/info`;
+    // let url = `/info?id=${id}&q=${q}`
+    if (!!id) {
+      url = `${url}?id=${id}`;
+    }
+    if (!!q) {
+      if (url.indexOf("?") > -1) {
+        url = `${url}&q=${q}`;
+      } else {
+        url = `${url}?q=${q}`;
+      }
+    }
+    axiosInstance.get(url).then(
       (res) => {
         if (res && res.data && !isObjectEmpty(res.data)) {
           console.log("res", res.data);
